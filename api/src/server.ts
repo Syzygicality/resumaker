@@ -3,6 +3,7 @@ import Fastify from 'fastify';
 import mongoPlugin from './plugins/mongo';
 import authPlugin from './plugins/auth';
 import pingRoutes from './routes/ping.route';
+import authRoutes from './routes/auth.route';
 
 const app = Fastify({ logger: true });
 
@@ -10,7 +11,7 @@ app.register(mongoPlugin);
 app.register(authPlugin);
 
 app.register(pingRoutes);
-
+app.register(authRoutes);
 
 const start = async () => {
     try {
