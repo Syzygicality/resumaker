@@ -59,4 +59,12 @@ export default async function authRoutes(app: FastifyInstance) {
 
     reply.send(tokens);
     });
+  app.get("/logout", async (request, reply) => {
+    const returnTo = encodeURIComponent(process.env.APP_BASE_URL || "http://localhost:3000/login");
+
+    const logoutUrl = `https://${process.env.AUTH0_DOMAIN}/v2/logout?client_id=${process.env.AUTH0_CLIENT_ID}&returnTo=${returnTo}`;
+
+    reply.redirect(logoutUrl);
+  });
+
 }
